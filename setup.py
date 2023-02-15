@@ -28,6 +28,12 @@ setup(
         'tenacity',
         'typing-extensions',
         'packaging',
+        'opentelemetry-api',
+        'opentelemetry-sdk',
+        'opentelemetry-exporter-otlp',
+        'opentelemetry-instrumentation-flask',
+        'opentelemetry-instrumentation',
+        'opentelemetry-instrumentation-wsgi',
     ],
     classifiers=[
         'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
