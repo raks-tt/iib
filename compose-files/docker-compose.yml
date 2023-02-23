@@ -80,15 +80,18 @@ services:
         iib wait-for-db &&
         iib db upgrade &&
         flask run --reload --host 0.0.0.0 --port 8080
-      # opentelemetry-instrument -s web flask run --port 8082 --host 0.0.0.0
+      # opentelemetry-instrument flask run --port 8080 --host 0.0.0.0
+      #OTEL_TRACES_EXPORTER: otlp_proto_http
     environment:
       FLASK_ENV: development
       FLASK_APP: iib/web/wsgi.py
       IIB_DEV: 'true'
-      OTEL_TRACES_EXPORTER: otlp
-      OTEL_EXPORTER_OTLP_SPAN_INSECURE: "True"
+      OTEL_EXPORTER_OTLP_PROTOCOL: "http/protobuf"
+      OTEL_SERVICE_NAME: "iib-api"
+      OTEL_EXPORTER_OTLP_TRACES_PROTOCOL: "http/protobuf"
       OTEL_RESOURCE_ATTRIBUTES: "deployment.environment=production"
-      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector-http-traces.apps.ocp-c2.prod.psi.redhat.com
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector-http-traces.apps.int.spoke.prod.us-east-1.aws.paas.redhat.com
+      OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: http://otel-collector-http-traces.apps.int.spoke.prod.us-east-1.aws.paas.redhat.com/v1/traces
     volumes:
       - ../:/src:z
       - ../docker/message_broker/certs:/broker-certs:ro,z

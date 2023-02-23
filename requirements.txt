@@ -681,9 +681,9 @@ grpcio==1.51.3 \
     # via
     #   -r requirements.in
     #   opentelemetry-exporter-otlp-proto-grpc
-opentelemetry-api==1.16.0 \
-    --hash=sha256:4b0e895a3b1f5e1908043ebe492d33e33f9ccdbe6d02d3994c2f8721a63ddddb \
-    --hash=sha256:79e8f0cf88dbdd36b6abf175d2092af1efcaa2e71552d0d2b3b181a9707bf4bc
+opentelemetry-api==1.15.0 \
+    --hash=sha256:79ab791b4aaad27acc3dc3ba01596db5b5aac2ef75c70622c6038051d6c2cded \
+    --hash=sha256:e6c2d2e42140fd396e96edf75a7ceb11073f4efb4db87565a431cc9d0f93f2e0
     # via
     #   -r requirements.in
     #   opentelemetry-exporter-otlp-proto-grpc
@@ -692,64 +692,64 @@ opentelemetry-api==1.16.0 \
     #   opentelemetry-instrumentation-flask
     #   opentelemetry-instrumentation-wsgi
     #   opentelemetry-sdk
-opentelemetry-exporter-otlp==1.8.0 \
-    --hash=sha256:33e6cae551fd8480d05bd800d6be23c235286409e36774616c1b6cc3e141b110 \
-    --hash=sha256:726742e9c291fcec5e980bfedf3337510160b6b09b06742ab845353240bb2400
+opentelemetry-exporter-otlp==1.15.0 \
+    --hash=sha256:4f7c49751d9720e2e726e13b0bb958ccade4e29122c305d92c033da432c8d2c5 \
+    --hash=sha256:79f22748b6a54808a0448093dfa189c8490e729f67c134d4c992533d9393b33e
     # via -r requirements.in
-opentelemetry-exporter-otlp-proto-grpc==1.8.0 \
-    --hash=sha256:7141243be205eb260c380fd4302e84b600972da03d64accf866d8a28c0516332 \
-    --hash=sha256:9c468a03db5c874262ef79ee51ca897a20e73a5e91db99faf2cfedc70bd63d1f
+opentelemetry-exporter-otlp-proto-grpc==1.15.0 \
+    --hash=sha256:844f2a4bb9bcda34e4eb6fe36765e5031aacb36dc60ed88c90fc246942ea26e7 \
+    --hash=sha256:c2a5492ba7d140109968135d641d06ce3c5bd73c50665f787526065d57d7fd1d
     # via
     #   -r requirements.in
     #   opentelemetry-exporter-otlp
-opentelemetry-exporter-otlp-proto-http==1.8.0 \
-    --hash=sha256:4a682abc3ab46afc7671c28ac9a9d911343b18cce37257c9cb063e3d1f579890 \
-    --hash=sha256:ad6107569b9ba8d10e836c03bb66ac258864972a765c6518d0c89db755717ddb
+opentelemetry-exporter-otlp-proto-http==1.15.0 \
+    --hash=sha256:11b2c814249a49b22f6cca7a06b05701f561d577b747f3660dfd67b6eb9daf9c \
+    --hash=sha256:3ec2a02196c8a54bf5cbf7fe623a5238625638e83b6047a983bdf96e2bbb74c0
     # via
     #   -r requirements.in
     #   opentelemetry-exporter-otlp
-opentelemetry-instrumentation==0.37b0 \
-    --hash=sha256:0dbd4d869608667b9dfaf39914312c5979370d5fc5faa36678f5e25fa54f045b \
-    --hash=sha256:2a172a7ef8d35332f24a97caf6b7b62fe418a48cf841ae2bcdaed338fea37b41
+opentelemetry-instrumentation==0.36b0 \
+    --hash=sha256:83ba4ae7d5292b5b33e0f851cc5c76d8f91196b9b3527800fc13855c33383ac2 \
+    --hash=sha256:e3ddac9b3b93408ef26c8ecbf38f717042977e16381bb4cd329a5b4cf16998cf
     # via
     #   -r requirements.in
     #   opentelemetry-instrumentation-flask
     #   opentelemetry-instrumentation-wsgi
-opentelemetry-instrumentation-flask==0.37b0 \
-    --hash=sha256:77e251b6538106b77612e3f340774345aad84847cbd97a0f3768cf74fac827a8 \
-    --hash=sha256:a9fa27c8ccded2b982eefd96b772e3ac24db8bf05269527ea910444b5e8a3563
+opentelemetry-instrumentation-flask==0.36b0 \
+    --hash=sha256:c11d232179bec91239a3e5b7fedec639ca5bad695cbb19611ee62e2d1306b880 \
+    --hash=sha256:f9fd7e9d2709e82e885e4f5ee9d07c10148b6dbe99dfaca73e56d817a52185f9
     # via -r requirements.in
-opentelemetry-instrumentation-wsgi==0.37b0 \
-    --hash=sha256:88b93d198110f4d70a70f3cd4ec8354c1373745dc3b7eac10b69041a443673fe \
-    --hash=sha256:998d295ea4d55d66c557e057209e7b3e97a3dfb3b4b5764347f434875f9692ff
+opentelemetry-instrumentation-wsgi==0.36b0 \
+    --hash=sha256:16c9ea4fecf0d8e5af38508e3c5281245bc88cfa0cea00ca16bbbbfdbc24185a \
+    --hash=sha256:67d61b07bebe9c3f0df5ad66fc7e9ca812cd91e581fc065cd2f6ad7ccf744adb
     # via
     #   -r requirements.in
     #   opentelemetry-instrumentation-flask
-opentelemetry-proto==1.8.0 \
-    --hash=sha256:2c4d9f819e09f33f6a2cb623ad2b0a426822f12577179e0bffd6588e7962d0fd \
-    --hash=sha256:7908c201b4eea566fa2b844e937b0ea76ca173b20ce8e1fc429099e8f5d0cc98
+opentelemetry-proto==1.15.0 \
+    --hash=sha256:044b6d044b4d10530f250856f933442b8753a17f94ae37c207607f733fb9a844 \
+    --hash=sha256:9c4008e40ac8cab359daac283fbe7002c5c29c77ea2674ad5626a249e64e0101
     # via
     #   -r requirements.in
     #   opentelemetry-exporter-otlp-proto-grpc
     #   opentelemetry-exporter-otlp-proto-http
-opentelemetry-sdk==1.16.0 \
-    --hash=sha256:15f03915eec4839f885a5e6ed959cde59b8690c8c012d07c95b4b138c98dc43f \
-    --hash=sha256:4d3bb91e9e209dbeea773b5565d901da4f76a29bf9dbc1c9500be3cabb239a4e
+opentelemetry-sdk==1.15.0 \
+    --hash=sha256:555c533e9837766119bbccc7a80458c9971d853a6f1da683a2246cd5e53b4645 \
+    --hash=sha256:98dbffcfeebcbff12c0c974292d6ea603180a145904cf838b1fe4d5c99078425
     # via
     #   -r requirements.in
     #   opentelemetry-exporter-otlp-proto-grpc
     #   opentelemetry-exporter-otlp-proto-http
-opentelemetry-semantic-conventions==0.37b0 \
-    --hash=sha256:087ce2e248e42f3ffe4d9fa2303111de72bb93baa06a0f4655980bc1557c4228 \
-    --hash=sha256:462982278a42dab01f68641cd89f8460fe1f93e87c68a012a76fb426dcdba5ee
+opentelemetry-semantic-conventions==0.36b0 \
+    --hash=sha256:829dc221795467d98b773c04096e29be038d77526dc8d6ac76f546fb6279bf01 \
+    --hash=sha256:adc05635e87b9d3e007c9f530eed487fc3ef2177d02f82f674f28ebf9aff8243
     # via
     #   -r requirements.in
     #   opentelemetry-instrumentation-flask
     #   opentelemetry-instrumentation-wsgi
     #   opentelemetry-sdk
-opentelemetry-util-http==0.37b0 \
-    --hash=sha256:591a5332db31bb6056ef2741c435e38ad4979d3c595b20b4c4dd62cbf1693524 \
-    --hash=sha256:6d3ddba5429918dc3a3e250858a819dad617a4a415f16b6ca6531065501f342a
+opentelemetry-util-http==0.36b0 \
+    --hash=sha256:2d858af8ff8a035da650d564efb3ed1baba1de6479998d344de3a7597333fded \
+    --hash=sha256:804807d9f50f3e7e135356531e8662e37f8c4c3edd54fc5b1826cb62202098c9
     # via
     #   -r requirements.in
     #   opentelemetry-instrumentation-flask

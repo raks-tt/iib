@@ -217,6 +217,7 @@ def _get_unique_bundles(bundles: List[str]) -> List[str]:
         )
     return unique_bundles
 
+
 @instrument_tracing
 @api_v1.route('/builds/<int:request_id>')
 def get_build(request_id: int) -> flask.Response:
@@ -352,7 +353,6 @@ def get_related_bundles(request_id: int) -> flask.Response:
         return flask.Response(f.read(), mimetype='application/json')
 
 
-@instrument_tracing
 @api_v1.route('/builds')
 def get_builds() -> flask.Response:
     """
