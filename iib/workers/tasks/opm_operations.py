@@ -23,6 +23,9 @@ from iib.workers.tasks.fbc_utils import (
     extract_fbc_fragment,
 )
 
+# Add instrumentation
+from iib.common.tracing import instrument_tracing
+
 log = logging.getLogger(__name__)
 
 
@@ -145,6 +148,7 @@ def _serve_cmd_at_port_defaults(serve_cmd: List[str], cwd: str, port: int) -> su
     )
 
 
+# @instrument_tracing(span_name="serve_cmd_at_port")
 @retry(
     before_sleep=before_sleep_log(log, logging.WARNING),
     reraise=True,
@@ -330,6 +334,7 @@ def deprecate_bundles_fbc(
     )
 
 
+@instrument_tracing(span_name="opm_migrate")
 def opm_migrate(
     index_db: str, base_dir: str, generate_cache: bool = True
 ) -> Union[Tuple[str, str], Tuple[str, None]]:
@@ -368,6 +373,7 @@ def opm_migrate(
     return fbc_dir_path, None
 
 
+# @instrument_tracing(span_name="opm_generate_dockerfile")
 def opm_generate_dockerfile(
     fbc_dir: str,
     base_dir: str,
@@ -512,6 +518,7 @@ def generate_cache_locally(base_dir: str, fbc_dir: str, local_cache_path: str) -
         raise IIBError(error_msg)
 
 
+# @instrument_tracing(span_name='opm_registry_add')
 @retry(
     before_sleep=before_sleep_log(log, logging.WARNING),
     reraise=True,
@@ -576,6 +583,7 @@ def _opm_registry_add(
     retry=retry_if_exception_type(IIBError),
     stop=stop_after_attempt(2),
 )
+@instrument_tracing(span_name='opm_registry_add_fbc')
 def opm_registry_add_fbc(
     base_dir: str,
     bundles: List[str],
@@ -653,6 +661,7 @@ def _opm_registry_rm(index_db_path: str, operators: List[str], base_dir: str) ->
     run_cmd(cmd, {'cwd': base_dir}, exc_msg='Failed to remove operators from the index image')
 
 
+# @instrument_tracing(span_name='opm_registry_rm_fbc')
 @retry(
     before_sleep=before_sleep_log(log, logging.WARNING),
     reraise=True,

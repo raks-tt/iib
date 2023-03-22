@@ -8,6 +8,9 @@ from typing import Tuple
 from iib.exceptions import IIBError
 from iib.workers.config import get_worker_config
 
+# Add instrumentation
+from iib.common.tracing import instrument_tracing
+
 log = logging.getLogger(__name__)
 
 
@@ -29,6 +32,7 @@ def is_image_fbc(image: str) -> bool:
     return bool(get_image_label(image, 'operators.operatorframework.io.index.configs.v1'))
 
 
+@instrument_tracing(span_name="get_catalog_dir")
 def get_catalog_dir(from_index: str, base_dir: str) -> str:
     """
     Get file-based catalog directory from the specified index image and save it locally.
@@ -72,6 +76,7 @@ def get_hidden_index_database(from_index: str, base_dir: str) -> str:
     return base_db_file
 
 
+@instrument_tracing(span_name="merge_catalogs_dirs")
 def merge_catalogs_dirs(src_config: str, dest_config: str):
     """
     Merge two catalog directories by replacing everything from src_config over dest_config.

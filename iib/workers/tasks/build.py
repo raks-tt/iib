@@ -56,6 +56,8 @@ from iib.workers.tasks.iib_static_types import (
     GreenwaveConfig,
     UpdateRequestPayload,
 )
+# Add instrumentation
+from iib.common.tracing import instrument_tracing
 
 __all__ = ['handle_add_request', 'handle_rm_request']
 
@@ -73,6 +75,7 @@ worker_config = get_worker_config()
         increment=worker_config.iib_retry_jitter,
     ),
 )
+@instrument_tracing(span_name="build_image")
 def _build_image(dockerfile_dir: str, dockerfile_name: str, request_id: int, arch: str) -> None:
     """
     Build the index image for the specified architecture.
@@ -146,6 +149,7 @@ def _cleanup() -> None:
     stop=stop_after_attempt(worker_config.iib_total_attempts),
     wait=wait_exponential(multiplier=worker_config.iib_retry_multiplier),
 )
+@instrument_tracing(span_name="create_and_push_manifest_list")
 def _create_and_push_manifest_list(
     request_id: int,
     arches: Set[str],
@@ -437,6 +441,7 @@ def _get_missing_bundles(
     retry=retry_if_exception_type(IIBError),
     stop=stop_after_attempt(2),
 )
+@instrument_tracing(span_name="opm_index_add")
 def _opm_index_add(
     base_dir: str,
     bundles: List[str],
@@ -675,6 +680,7 @@ def _update_index_image_build_state(
     stop=stop_after_attempt(worker_config.iib_total_attempts),
     wait=wait_exponential(worker_config.iib_retry_multiplier),
 )
+@instrument_tracing(span_name="push_image")
 def _push_image(request_id: int, arch: str) -> None:
     """
     Push the single arch container image to the configured registry.
@@ -762,6 +768,7 @@ def _verify_index_image(
 
 @app.task
 @request_logger
+@instrument_tracing(span_name='handle_add_request')
 def handle_add_request(
     bundles: List[str],
     request_id: int,
@@ -1206,6 +1213,7 @@ def _copy_files_from_image(image: str, src_path: str, dest_path: str) -> None:
             log.exception(e)
 
 
+@instrument_tracing("add_label_to_index")
 def _add_label_to_index(
     label_key: str,
     label_value: str,

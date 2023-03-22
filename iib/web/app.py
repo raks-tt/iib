@@ -3,7 +3,7 @@ import logging
 import os
 from typing import Optional
 
-from flask import Flask
+from flask import Flask, request
 from flask.config import Config
 from flask.logging import default_handler
 from flask_login import LoginManager
@@ -20,6 +20,16 @@ from iib.web.errors import json_error
 
 # Import the models here so that Alembic will be guaranteed to detect them
 import iib.web.models  # noqa: F401
+from opentelemetry.instrumentation.wsgi import OpenTelemetryMiddleware
+from opentelemetry.instrumentation.sqlalchemy import SQLAlchemyInstrumentor
+from opentelemetry.instrumentation.flask import FlaskInstrumentor
+from opentelemetry.instrumentation.logging import LoggingInstrumentor
+from opentelemetry.instrumentation.requests import RequestsInstrumentor
+from opentelemetry.instrumentation.celery import CeleryInstrumentor
+
+from iib.common.tracing import TracingWrapper
+
+tracerWrapper = TracingWrapper()
 
 
 def load_config(app: Flask) -> None:
@@ -170,6 +180,16 @@ def create_app(config_obj: Optional[str] = None) -> Flask:  # pragma: no cover
         app.config.from_object(config_obj)
     else:
         load_config(app)
+
+    # Add instrumentation for flask, sqlalchemy and logging
+    FlaskInstrumentor().instrument_app(app, enable_commenter=True, commenter_options={})
+    app.wsgi_app = OpenTelemetryMiddleware(app.wsgi_app)
+    SQLAlchemyInstrumentor().instrument(
+        enable_commenter=True, commenter_options={'opentelemetry_values': True}
+    )
+    LoggingInstrumentor().instrument()
+    RequestsInstrumentor().instrument()
+    CeleryInstrumentor().instrument()
 
     # Validate the config
     validate_api_config(app.config)

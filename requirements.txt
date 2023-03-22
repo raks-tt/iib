@@ -754,6 +754,21 @@ opentelemetry-util-http==0.36b0 \
     #   -r requirements.in
     #   opentelemetry-instrumentation-flask
     #   opentelemetry-instrumentation-wsgi
+opentelemetry-instrumentation-sqlalchemy==0.36b0 \
+    --hash=sha256:a19f0ae419832da77f50b3a7c3cbdadbe3c0bd690bfabb98977cd94383b75820 \
+    --hash=sha256:ba51cccf95a74f9774958f0bf7a87688742275288c52fa73875f76962314973f
+opentelemetry-instrumentation-celery==0.36b0 \
+    --hash=sha256:929041edc4d367e49974730d2ad6802765e65d9a98714289c13b823913075445 \
+    --hash=sha256:bde0903801515d68011fcfff0deddab6506ce4accc99a389a91ff69965c0ff15
+opentelemetry-instrumentation-logging==0.36b0 \
+    --hash=sha256:412d996a40912cd6b0a50beca98bb6a4c2e77dfe6546c4321c854dc66c8f3978 \
+    --hash=sha256:b4212b9ac50d8510b94d70419c8573c32375dc0e5f1d7db5ec39ab151f6919b0
+opentelemetry-instrumentation-requests==0.36b0 \
+    --hash=sha256:39c65951a6bab3d41ec45a4ef42d8c1cdfeb618aa69da7177ad8958be12aee02 \
+    --hash=sha256:c40a075597325644e782e79e12065dfd8e363beac5259b89acda54c1d79a250c
+opentelemetry-instrumentation-botocore==0.36b0 \
+    --hash=sha256:339dc59659cd3f72004ca0a6e7ca86777e567c22eb367a1a4ec8c05ffd862950 \
+    --hash=sha256:fcb5bed8689401bc4fba5a4b72a1051858cd62601e1aea9d8d013867dc131443
 protobuf==3.20.0 \
     --hash=sha256:001c2160c03b6349c04de39cf1a58e342750da3632f6978a1634a3dcca1ec10e \
     --hash=sha256:0b250c60256c8824219352dc2a228a6b49987e5bf94d3ffcf4c46585efcbd499 \

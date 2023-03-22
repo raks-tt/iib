@@ -43,6 +43,9 @@ from iib.workers.tasks.iib_static_types import (
     BundleImage,
 )
 
+# Add instrumentation
+from iib.common.tracing import instrument_tracing
+
 log = logging.getLogger(__name__)
 dogpile_cache_region = create_dogpile_region()
 
@@ -75,6 +78,7 @@ def _add_property_to_index(db_path: str, property: Dict[str, str]) -> None:
     con.close()
 
 
+@instrument_tracing(span_name="add_max_ocp_version_property")
 def add_max_ocp_version_property(resolved_bundles: List[str], temp_dir: str) -> None:
     """
     Add the max ocp version property to bundles.
@@ -1060,7 +1064,7 @@ def get_all_index_images_info(
     #  MYPY error: Missing keys ("from_index", "source_from_index", "target_index")
     #  for TypedDict "AllIndexImagesInfo"
     infos: AllIndexImagesInfo = {}  # type: ignore
-    for (index, version) in index_version_map:
+    for index, version in index_version_map:
         log.debug(f'Get index image info {index} for version {version}')
         if not hasattr(build_request_config, index):
             from_index = None

@@ -62,9 +62,32 @@ from iib.web.iib_static_types import (
     RmRequestPayload,
 )
 from iib.common.tracing import instrument_tracing
+from opentelemetry import trace
 
 
 api_v1 = flask.Blueprint('api_v1', __name__)
+headers ={}
+
+@api_v1.before_request
+def capture_headers():
+    """
+    Get headers for the request.
+
+    :return: dict, a dictionary of headers
+    """
+    global headers
+    traceparent_headers = flask.request.headers.get('traceparent')
+    # Retrieve the current span
+    tracer = trace.get_tracer(__name__)
+    current_span = tracer.start_span("Headers")
+    with tracer.use_span(current_span, end_on_exit=True):
+        current_span.set_attribute("traceparent", traceparent_headers)
+    # for header, value in request.headers.items():
+    #     headers[header] = value
+    #current_span.set_attribute("traceparent", traceparent_headers)
+    # headers = flask.request.headers
+    # flask.current_app.logger.debug('GET HEADERS%s', traceparent)
+    # flask.current_app.logger.debug('GET HEADERS%s', headers)
 
 
 def _get_rm_args(
@@ -218,7 +241,6 @@ def _get_unique_bundles(bundles: List[str]) -> List[str]:
     return unique_bundles
 
 
-@instrument_tracing
 @api_v1.route('/builds/<int:request_id>')
 def get_build(request_id: int) -> flask.Response:
     """
